@@ -1,0 +1,5 @@
+name: jev_decision
+summary: Typed Jev choice decision for JSON messages
+type: processor
+command: [".venv/bin/python", "processor.py"]
+fields: []

@@ -1,0 +1,7 @@
+input:
+  stdin: {}
+pipeline:
+  processors:
+    - jev_decision: {}
+output:
+  stdout: {}
