@@ -9,6 +9,10 @@ class ProcessorTests(unittest.TestCase):
     def test_non_object(self):
         with self.assertRaises(ValueError): enrich(b'[1]', api_key="test")
 
+    def test_existing_decision_is_not_overwritten(self):
+        with self.assertRaisesRegex(ValueError, "reserved jev field"):
+            enrich(b'{"text":"server down","jev":{"user":"value"}}', evaluate=lambda *_: self.fail("Jev must not run"), api_key="test")
+
     def test_sdk_message(self):
         try: from redpanda_connect import Message
         except ImportError: self.skipTest("Redpanda SDK needs Python 3.12")

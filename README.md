@@ -1,6 +1,6 @@
 # Redpanda Connect Jev
 
-Experimental community alpha v0.1.0 · MIT.
+Experimental community alpha v0.1.1 · MIT.
 
 ## Français
 
@@ -18,6 +18,8 @@ Variables serveur : `TYPESAFE_API_KEY, JEV_TEXT_FIELD (optional / facultatif / o
 
 Le champ `text` est lu dans le message ; une erreur du modèle échoue le processeur pour utiliser la gestion des erreurs du pipeline. Le routage aval peut utiliser `jev.outcome`.
 
+Le processeur rejette un message qui possède déjà un champ `jev`, afin de ne pas écraser des données existantes.
+
 ## English
 
 A Redpanda Connect RPC processor enriches each JSON object with `jev.outcome`, `jev.choice`, probability, and policy version.
@@ -34,6 +36,8 @@ Server variables: `TYPESAFE_API_KEY, JEV_TEXT_FIELD (optional / facultatif / opc
 
 The `text` field is read from the message; a model failure fails the processor so the pipeline can handle it. Downstream routing can use `jev.outcome`.
 
+The processor rejects a message that already has a `jev` field, so existing data is not overwritten.
+
 ## Español
 
 Un procesador RPC de Redpanda Connect añade a cada objeto JSON `jev.outcome`, `jev.choice`, la probabilidad y la versión de la política.
@@ -49,6 +53,8 @@ rpk connect run --rpc-plugins=plugin.yaml connect.yaml
 Variables del servidor: `TYPESAFE_API_KEY, JEV_TEXT_FIELD (optional / facultatif / opcional; default: text)`. Mantén los secretos fuera del repositorio y de la configuración visible para usuarios.
 
 Se lee el campo `text` del mensaje; un fallo del modelo hace fallar el procesador para que el flujo gestione el error. El enrutamiento posterior puede usar `jev.outcome`.
+
+El procesador rechaza un mensaje que ya tenga un campo `jev` para no sobrescribir datos existentes.
 
 ## Verification / Vérification / Verificación
 
