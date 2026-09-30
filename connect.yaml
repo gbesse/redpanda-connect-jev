@@ -4,4 +4,5 @@ pipeline:
   processors:
     - jev_decision: {}
 output:
-  stdout: {}
+  reject_errored:
+    stdout: {}
