@@ -1,6 +1,6 @@
 # Redpanda Connect Jev
 
-Experimental community alpha v0.1.1 · MIT.
+Experimental community alpha v0.1.2 · MIT.
 
 ## Français
 
@@ -20,6 +20,8 @@ Le champ `text` est lu dans le message ; une erreur du modèle échoue le proces
 
 Le processeur rejette un message qui possède déjà un champ `jev`, afin de ne pas écraser des données existantes.
 
+Le pipeline d’exemple utilise `reject_errored` : un message sans décision Jev valide ne part pas vers `stdout`. Pour une source durable, configurer les rejets ou une file de messages en échec selon la source.
+
 ## English
 
 A Redpanda Connect RPC processor enriches each JSON object with `jev.outcome`, `jev.choice`, probability, and policy version.
@@ -38,6 +40,8 @@ The `text` field is read from the message; a model failure fails the processor s
 
 The processor rejects a message that already has a `jev` field, so existing data is not overwritten.
 
+The example pipeline uses `reject_errored`: a message without a valid Jev decision does not reach `stdout`. For a durable input, configure rejection or a dead-letter queue for that input.
+
 ## Español
 
 Un procesador RPC de Redpanda Connect añade a cada objeto JSON `jev.outcome`, `jev.choice`, la probabilidad y la versión de la política.
@@ -55,6 +59,8 @@ Variables del servidor: `TYPESAFE_API_KEY, JEV_TEXT_FIELD (optional / facultatif
 Se lee el campo `text` del mensaje; un fallo del modelo hace fallar el procesador para que el flujo gestione el error. El enrutamiento posterior puede usar `jev.outcome`.
 
 El procesador rechaza un mensaje que ya tenga un campo `jev` para no sobrescribir datos existentes.
+
+El flujo de ejemplo usa `reject_errored`: un mensaje sin decisión Jev válida no llega a `stdout`. Para una entrada duradera, configura el rechazo o una cola de mensajes fallidos según la fuente.
 
 ## Verification / Vérification / Verificación
 
