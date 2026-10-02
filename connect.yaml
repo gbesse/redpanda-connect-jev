@@ -4,5 +4,13 @@ pipeline:
   processors:
     - jev_decision: {}
 output:
-  reject_errored:
-    stdout: {}
+  switch:
+    cases:
+      - check: errored()
+        output:
+          file:
+            path: failed-inputs.txt
+            codec: lines
+      - output:
+          stdout:
+            codec: lines
