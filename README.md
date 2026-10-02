@@ -1,8 +1,10 @@
 # Redpanda Connect Jev
 
-Experimental community alpha v0.1.3 · MIT.
+Experimental community alpha v0.1.4 · MIT.
 
 ## Français
+
+Exemple hors ligne : `python3 examples/offline_decisions.py` rejoue « Les événements de paiement échouent en production dans toutes les régions. » avec une réponse synthétique à forte puis faible probabilité. La faible probabilité reste en revue ; aucune clé ni requête réseau.
 
 Un processeur RPC Redpanda Connect enrichit chaque objet JSON avec `jev.outcome`, `jev.choice`, la probabilité et la version de politique.
 
@@ -25,6 +27,8 @@ Le pipeline d’exemple envoie les décisions valides vers `stdout` et conserve 
 
 ## English
 
+Offline example: `python3 examples/offline_decisions.py` replays “Production payment events are failing in every region.” with synthetic high and low probability responses. Low probability remains in review; no key or network request.
+
 A Redpanda Connect RPC processor enriches each JSON object with `jev.outcome`, `jev.choice`, probability, and policy version.
 
 Setup:
@@ -45,6 +49,8 @@ The processor rejects a message that already has a `jev` field, so existing data
 The example pipeline sends valid decisions to `stdout` and preserves failed inputs as raw lines in `failed-inputs.txt`. Git ignores this file; `umask 077` restricts access to it. For a durable input, replace this output with a suitable dead-letter queue.
 
 ## Español
+
+Ejemplo sin conexión: `python3 examples/offline_decisions.py` reproduce «Los eventos de pago fallan en producción en todas las regiones.» con respuestas sintéticas de probabilidad alta y baja. La probabilidad baja queda para revisión; no requiere clave ni red.
 
 Un procesador RPC de Redpanda Connect añade a cada objeto JSON `jev.outcome`, `jev.choice`, la probabilidad y la versión de la política.
 
