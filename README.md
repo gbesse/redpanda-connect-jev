@@ -1,6 +1,6 @@
 # Redpanda Connect Jev
 
-Experimental community alpha v0.1.2 · MIT.
+Experimental community alpha v0.1.3 · MIT.
 
 ## Français
 
@@ -11,6 +11,7 @@ Installation :
 ```sh
 python3.12 -m venv .venv
 .venv/bin/pip install redpanda-connect
+umask 077
 rpk connect run --rpc-plugins=plugin.yaml connect.yaml
 ```
 
@@ -20,7 +21,7 @@ Le champ `text` est lu dans le message ; une erreur du modèle échoue le proces
 
 Le processeur rejette un message qui possède déjà un champ `jev`, afin de ne pas écraser des données existantes.
 
-Le pipeline d’exemple utilise `reject_errored` : un message sans décision Jev valide ne part pas vers `stdout`. Pour une source durable, configurer les rejets ou une file de messages en échec selon la source.
+Le pipeline d’exemple envoie les décisions valides vers `stdout` et conserve les entrées en échec, sous leur forme brute, dans `failed-inputs.txt`. Le fichier est ignoré par Git ; `umask 077` limite son accès. Pour une source durable, remplacer cette sortie par une file de messages en échec adaptée.
 
 ## English
 
@@ -31,6 +32,7 @@ Setup:
 ```sh
 python3.12 -m venv .venv
 .venv/bin/pip install redpanda-connect
+umask 077
 rpk connect run --rpc-plugins=plugin.yaml connect.yaml
 ```
 
@@ -40,7 +42,7 @@ The `text` field is read from the message; a model failure fails the processor s
 
 The processor rejects a message that already has a `jev` field, so existing data is not overwritten.
 
-The example pipeline uses `reject_errored`: a message without a valid Jev decision does not reach `stdout`. For a durable input, configure rejection or a dead-letter queue for that input.
+The example pipeline sends valid decisions to `stdout` and preserves failed inputs as raw lines in `failed-inputs.txt`. Git ignores this file; `umask 077` restricts access to it. For a durable input, replace this output with a suitable dead-letter queue.
 
 ## Español
 
@@ -51,6 +53,7 @@ Instalación:
 ```sh
 python3.12 -m venv .venv
 .venv/bin/pip install redpanda-connect
+umask 077
 rpk connect run --rpc-plugins=plugin.yaml connect.yaml
 ```
 
@@ -60,7 +63,7 @@ Se lee el campo `text` del mensaje; un fallo del modelo hace fallar el procesado
 
 El procesador rechaza un mensaje que ya tenga un campo `jev` para no sobrescribir datos existentes.
 
-El flujo de ejemplo usa `reject_errored`: un mensaje sin decisión Jev válida no llega a `stdout`. Para una entrada duradera, configura el rechazo o una cola de mensajes fallidos según la fuente.
+El flujo de ejemplo envía las decisiones válidas a `stdout` y conserva las entradas fallidas como líneas sin modificar en `failed-inputs.txt`. Git ignora este archivo; `umask 077` limita el acceso. Para una entrada duradera, sustituye esta salida por una cola de mensajes fallidos adecuada.
 
 ## Verification / Vérification / Verificación
 
@@ -68,7 +71,7 @@ El flujo de ejemplo usa `reject_errored`: un mensaje sin decisión Jev válida n
 python3 -m unittest discover -s tests -v
 ```
 
-Tests use synthetic responses and an actual Redpanda SDK Message. One live Jev request validated the pinned model and response shape; no Redpanda Connect server was exercised. Threshold `0.9` must be calibrated on labeled data. / Les tests utilisent des réponses synthétiques et un vrai Message du SDK Redpanda. Un appel Jev réel a validé le modèle et la réponse ; aucun serveur Redpanda Connect n’a été testé. Le seuil doit être calibré. / Las pruebas usan respuestas sintéticas y un Message real del SDK Redpanda. Una llamada real a Jev validó el modelo y la respuesta; no se probó un servidor Redpanda Connect. El umbral debe calibrarse.
+Tests use synthetic responses and an actual Redpanda SDK Message. Redpanda Connect 4.112.0 processed one live Jev event and routed a failed input to the review file; no broker was exercised. Threshold `0.9` must be calibrated on labeled data. / Les tests utilisent des réponses synthétiques et un vrai Message du SDK Redpanda. Redpanda Connect 4.112.0 a traité un événement Jev réel et dirigé une entrée en échec vers le fichier de revue ; aucun broker n’a été testé. Le seuil `0.9` doit être calibré. / Las pruebas usan respuestas sintéticas y un Message real del SDK Redpanda. Redpanda Connect 4.112.0 procesó un evento Jev real y envió una entrada fallida al archivo de revisión; no se probó ningún broker. El umbral `0.9` debe calibrarse.
 
 Host reference / Référence de l’hôte / Referencia del host: https://docs.redpanda.com/connect/plugins/about/
 

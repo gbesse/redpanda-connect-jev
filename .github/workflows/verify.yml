@@ -9,5 +9,11 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install redpanda-connect==0.1.3
+      - name: Install Redpanda Connect for pipeline check
+        run: |
+          curl -fsSL https://github.com/redpanda-data/connect/releases/download/v4.112.0/redpanda-connect_4.112.0_linux_amd64.tar.gz -o /tmp/redpanda-connect.tar.gz
+          echo "d7615f24ecacedaee88cd41583e9895bc936df57f230d2ae5383c03a81e10d26  /tmp/redpanda-connect.tar.gz" | sha256sum -c -
+          tar -xzf /tmp/redpanda-connect.tar.gz -C /tmp redpanda-connect
+          echo "CONNECT_BIN=/tmp/redpanda-connect" >> "$GITHUB_ENV"
       - run: python -m unittest discover -s tests -v
       - run: python -m compileall -q .
