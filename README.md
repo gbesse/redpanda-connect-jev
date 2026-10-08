@@ -1,6 +1,6 @@
 # Redpanda Connect Jev
 
-Experimental community alpha v0.1.4 · MIT.
+Experimental community alpha v0.1.5 · MIT.
 
 ## Français
 
@@ -82,3 +82,11 @@ Tests use synthetic responses and an actual Redpanda SDK Message. Redpanda Conne
 Host reference / Référence de l’hôte / Referencia del host: https://docs.redpanda.com/connect/plugins/about/
 
 Redpanda Connect v4.56+ and Python 3.12+ are required for dynamic RPC plugins. / Redpanda Connect v4.56+ et Python 3.12+ sont requis. / Se requieren Redpanda Connect v4.56+ y Python 3.12+.
+
+## October 2026 improvement · Amélioration d’octobre 2026 · Mejora de octubre de 2026
+
+Run `python3 examples/fail_closed.py` to verify malformed JSON and an existing reserved `jev` field are rejected before inference. No broker or key is needed.
+
+Exécutez `python3 examples/fail_closed.py` pour vérifier qu’un JSON mal formé et un champ réservé `jev` préexistant sont refusés avant l’inférence. Aucun courtier ni clé n’est nécessaire.
+
+Ejecute `python3 examples/fail_closed.py` para comprobar que un JSON mal formado y un campo reservado `jev` existente se rechazan antes de la inferencia. No hace falta un bróker ni una clave.

@@ -1,3 +1,7 @@
+## v0.1.5
+
+Offline fail-closed demo rejects malformed and reserved-field input before inference. / La démo hors ligne refuse les entrées mal formées et le champ réservé avant inférence. / La demo sin conexión rechaza entradas mal formadas y el campo reservado antes de la inferencia.
+
 ## v0.1.4
 
 Offline synthetic high/low confidence decision example; no API key required.
