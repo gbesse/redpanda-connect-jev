@@ -90,3 +90,12 @@ Run `python3 examples/fail_closed.py` to verify malformed JSON and an existing r
 Exécutez `python3 examples/fail_closed.py` pour vérifier qu’un JSON mal formé et un champ réservé `jev` préexistant sont refusés avant l’inférence. Aucun courtier ni clé n’est nécessaire.
 
 Ejecute `python3 examples/fail_closed.py` para comprobar que un JSON mal formado y un campo reservado `jev` existente se rechazan antes de la inferencia. No hace falta un bróker ni una clave.
+
+
+## 2026-11-05 — FR / EN / ES
+
+FR : Helper `enrich_batch(payloads,...)` prévalide tout le lot avant appel, refuse doublons JSON et champ réservé, puis retourne les sorties dans l’ordre. Ne modifie pas les messages d’origine. Ce helper ne raccorde pas automatiquement le batch au SDK ; si un jugement ultérieur échoue, les appels déjà faits ne sont pas annulés.
+
+EN: `enrich_batch(payloads,...)` helper preflights the entire batch before calls, rejects duplicate JSON keys and reserved fields, then returns outputs in order. Original messages untouched. Does not automatically wire SDK batch processing; later failure does not undo earlier calls.
+
+ES: Helper `enrich_batch(payloads,...)` prevalida todo lote antes de llamar, rechaza claves JSON duplicadas y campos reservados, devuelve salidas ordenadas sin modificar originales. No conecta automáticamente lote al SDK; fallo posterior no deshace llamadas anteriores.
