@@ -99,3 +99,12 @@ FR : Helper `enrich_batch(payloads,...)` prévalide tout le lot avant appel, ref
 EN: `enrich_batch(payloads,...)` helper preflights the entire batch before calls, rejects duplicate JSON keys and reserved fields, then returns outputs in order. Original messages untouched. Does not automatically wire SDK batch processing; later failure does not undo earlier calls.
 
 ES: Helper `enrich_batch(payloads,...)` prevalida todo lote antes de llamar, rechaza claves JSON duplicadas y campos reservados, devuelve salidas ordenadas sin modificar originales. No conecta automáticamente lote al SDK; fallo posterior no deshace llamadas anteriores.
+
+
+## 2026-11-12 — FR / EN / ES
+
+FR : Appliquer le préflight strict aux messages unitaires et compter les octets UTF-8 avant tout appel fournisseur.
+
+EN: Apply strict preflight to single messages and count UTF-8 bytes before provider calls.
+
+ES: Aplicar preflight estricto a mensajes individuales y contar bytes UTF-8 antes de llamadas proveedor.
